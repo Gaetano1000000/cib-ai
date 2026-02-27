@@ -141,5 +141,23 @@ export async function generateInvestmentBriefFromDossier(dossierPath) {
     memo = memo.replaceAll('(Source 0)', '').replaceAll('  ', ' ');
 
 
-  return { memo, company };
+  
+  // EDGEON_SANITIZE_MEMO: remove filler lines (Unknown/N/A/Not available + "not evidenced"/"diligence required")
+  if (typeof memo === "string") {
+    memo = memo
+      .split("\n")
+      .filter(l => !(
+        /\bUnknown\b|\bN\/?A\b|Not available/i.test(l) ||
+        /not evidenced in the provided sources/i.test(l) ||
+        /diligence required\.?\s*$/i.test(l) ||
+        /Market framing is not evidenced/i.test(l) ||
+        /Competitive positioning details are not evidenced/i.test(l) ||
+        /Growth signals are not evidenced/i.test(l) ||
+        /Required inputs for modeling are not evidenced/i.test(l) ||
+        /Key risks and diligence priorities are not evidenced/i.test(l)
+      ))
+      .join("\n");
+  }
+
+return { memo, company };
 }

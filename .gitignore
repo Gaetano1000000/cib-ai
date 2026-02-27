@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+
+# logs & runtime
+logs/
+*.log
+nohup.out
+
+# local env
+.env
+.env.*
+
+# generated data
+dossiers/
+backups/
+tmp/
+*.tmp
+
+# OS/Editor
+.DS_Store
+.vscode/
