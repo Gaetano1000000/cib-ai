@@ -1,0 +1,9 @@
+nohup: ignoring input
+[dotenv@17.3.1] injecting env (0) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+Server running on port 3000
+WARN: auto-patched 1 numeric line(s) with (Assumption, Confidence: Low)
+WARN: auto-patched 1 numeric line(s) with (Assumption, Confidence: Low)
+WARN: auto-patched 1 numeric line(s) with (Assumption, Confidence: Low)
+WARN: auto-patched 1 numeric line(s) with (Assumption, Confidence: Low)
+WARN: auto-patched 3 numeric line(s) with (Assumption, Confidence: Low)
+WARN: auto-patched 1 numeric line(s) with (Assumption, Confidence: Low)

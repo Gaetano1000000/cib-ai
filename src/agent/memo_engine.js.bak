@@ -1,0 +1,54 @@
+import "dotenv/config";
+import fs from "node:fs/promises";
+import path from "node:path";
+import OpenAI from "openai";
+
+const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+async function loadPrompt() {
+  const p = path.join(process.cwd(), "src", "prompts", "investment_brief.md");
+  return fs.readFile(p, "utf-8");
+}
+
+function buildDossierText(dossierJson) {
+  const { company, website, sources, dossier } = dossierJson;
+
+  const sourcesText = (sources || [])
+    .map((s, i) => {
+      const idx = i + 1;
+      const meta = s?.ok ? `ok, chars=${s?.chars ?? ""}` : `error=${s?.error ?? "unknown"}`;
+      return `Source ${idx}: ${s?.url ?? ""} (${meta})`;
+    })
+    .join("\n");
+
+  return [
+    `COMPANY: ${company || ""}`,
+    `WEBSITE: ${website || ""}`,
+    ``,
+    `SOURCES (numbered):`,
+    sourcesText,
+    ``,
+    `DOSSIER CONTENT (merged excerpts):`,
+    dossier || ""
+  ].join("\n");
+}
+
+export async function generateInvestmentBriefFromDossier(dossierPath) {
+  const raw = await fs.readFile(dossierPath, "utf-8");
+  const dossierJson = JSON.parse(raw);
+
+  const prompt = await loadPrompt();
+  const dossierText = buildDossierText(dossierJson);
+
+  const response = await client.responses.create({
+    model: "gpt-4.1-mini",
+    input: [
+      { role: "system", content: prompt },
+      { role: "user", content: dossierText }
+    ],
+    temperature: 0.4,
+  });
+
+  const out = response.output_text?.trim() || "";
+  return { memo: out, company: dossierJson.company || "company" };
+}

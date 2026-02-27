@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CIB AI — Investment Brief Demo</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">CIB</div>
+        <div class="brand-text">
+          <div class="title">CIB AI</div>
+          <div class="subtitle">Investment Brief Generator (Local Demo)</div>
+        </div>
+      </div>
+      <div class="pill">v0 — local</div>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <h1>Generate an Investment Brief</h1>
+        <p class="hint">Inserisci <b>Company</b> (obbligatoria). Website e Country sono opzionali.</p>
+
+        <form id="form" class="form">
+          <label>
+            Company
+            <input id="company" name="company" placeholder="e.g., Satispay" required minlength="2" />
+          </label>
+
+          <label>
+            Website (optional)
+            <input id="website" name="website" placeholder="https://www.satispay.com" />
+          </label>
+
+          <label>
+            Country (optional)
+            <input id="country" name="country" placeholder="it / us / de ..." />
+          </label>
+
+          <button id="btn" type="submit">
+            <span id="btnText">Generate</span>
+            <span id="btnSpinner" class="spinner hidden"></span>
+          </button>
+
+          <div id="status" class="status"></div>
+        </form>
+
+        <div class="tips">
+          <div class="tip"><b>Tip:</b> usa “Satispay” per il primo test.</div>
+          <div class="tip"><b>Nota:</b> se mancano dati nel dossier, il memo deve dire <i>Unknown (Confidence: Low)</i>.</div>
+        </div>
+      </section>
+
+      <section class="card output">
+        <div class="output-head">
+          <h2>Output</h2>
+          <div class="output-actions">
+            <button id="copy" class="secondary" type="button" disabled>Copy memo</button>
+            <button id="download" class="secondary" type="button" disabled>Download .md</button>
+          </div>
+        </div>
+
+        <div id="meta" class="meta hidden"></div>
+        <article id="memo" class="memo empty">
+          <div class="empty-state">
+            <div class="empty-title">Nessun memo ancora</div>
+            <div class="empty-subtitle">Genera un brief per vedere il risultato qui.</div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Local demo • Endpoint: <code>/api/agent/run</code></span>
+    </footer>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

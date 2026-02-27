@@ -1,0 +1,149 @@
+:root{
+  --bg:#0b0f17;
+  --card:#111827;
+  --muted:#9ca3af;
+  --text:#e5e7eb;
+  --border:rgba(255,255,255,.08);
+  --accent:#7c3aed;
+  --accent2:#22c55e;
+  --danger:#ef4444;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background: radial-gradient(1200px 800px at 20% 10%, rgba(124,58,237,.25), transparent 55%),
+              radial-gradient(900px 600px at 80% 20%, rgba(34,197,94,.18), transparent 55%),
+              var(--bg);
+  color:var(--text);
+}
+
+.page{max-width:1200px;margin:0 auto;padding:28px}
+
+.header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 16px;border:1px solid var(--border);
+  background:rgba(17,24,39,.65);backdrop-filter: blur(10px);
+  border-radius:16px;
+}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{
+  width:44px;height:44px;border-radius:12px;
+  display:grid;place-items:center;font-weight:800;
+  background:linear-gradient(135deg,var(--accent),#2563eb);
+}
+.brand-text .title{font-weight:800;letter-spacing:.2px}
+.brand-text .subtitle{color:var(--muted);font-size:13px;margin-top:2px}
+.pill{
+  font-size:12px;color:rgba(255,255,255,.85);
+  border:1px solid var(--border);
+  padding:6px 10px;border-radius:999px;
+  background:rgba(255,255,255,.04);
+}
+
+.grid{display:grid;grid-template-columns: 1fr 1.2fr;gap:18px;margin-top:18px}
+@media (max-width: 980px){.grid{grid-template-columns:1fr}}
+
+.card{
+  border:1px solid var(--border);
+  background:rgba(17,24,39,.6);
+  backdrop-filter: blur(10px);
+  border-radius:18px;
+  padding:18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+.card h1{margin:0 0 8px 0;font-size:22px}
+.card h2{margin:0;font-size:18px}
+.hint{margin:0 0 14px 0;color:var(--muted);line-height:1.4}
+
+.form{display:grid;gap:12px;margin-top:10px}
+label{display:grid;gap:6px;font-size:13px;color:rgba(255,255,255,.9)}
+input{
+  width:100%;
+  padding:12px 12px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:rgba(0,0,0,.25);
+  color:var(--text);
+  outline:none;
+}
+input:focus{border-color:rgba(124,58,237,.7);box-shadow:0 0 0 4px rgba(124,58,237,.15)}
+
+button{
+  cursor:pointer;
+  border:none;
+  border-radius:12px;
+  padding:12px 12px;
+  font-weight:700;
+  color:white;
+  background:linear-gradient(135deg,var(--accent),#2563eb);
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+button:disabled{opacity:.55;cursor:not-allowed}
+.secondary{
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--border);
+  color:rgba(255,255,255,.9);
+  padding:9px 10px;
+  font-weight:600;
+}
+.status{min-height:18px;font-size:13px;color:var(--muted)}
+.status.ok{color:rgba(34,197,94,.95)}
+.status.err{color:rgba(239,68,68,.95)}
+
+.tips{margin-top:14px;display:grid;gap:8px}
+.tip{
+  font-size:13px;color:rgba(255,255,255,.88);
+  border:1px dashed rgba(255,255,255,.12);
+  background:rgba(255,255,255,.03);
+  padding:10px;border-radius:14px
+}
+
+.output{min-height:520px}
+.output-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.output-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+.meta{
+  font-size:12px;color:var(--muted);
+  border:1px solid var(--border);
+  background:rgba(0,0,0,.18);
+  padding:10px;border-radius:14px;margin-bottom:12px;
+}
+.hidden{display:none}
+
+.memo{
+  border:1px solid var(--border);
+  background:rgba(0,0,0,.18);
+  border-radius:16px;
+  padding:14px;
+  max-height:640px;
+  overflow:auto;
+}
+.memo.empty{display:grid;place-items:center;min-height:420px}
+.empty-state{text-align:center;color:var(--muted)}
+.empty-title{font-weight:800;color:rgba(255,255,255,.9);margin-bottom:6px}
+.empty-subtitle{font-size:13px}
+
+.memo h1,.memo h2,.memo h3{margin-top:16px}
+.memo h1{font-size:20px}
+.memo h2{font-size:16px}
+.memo p,.memo li{color:rgba(255,255,255,.9);line-height:1.5}
+.memo code{background:rgba(255,255,255,.06);padding:2px 6px;border-radius:8px}
+.memo pre{background:rgba(0,0,0,.35);padding:12px;border-radius:12px;overflow:auto;border:1px solid var(--border)}
+
+.footer{
+  margin-top:16px;
+  color:var(--muted);
+  font-size:12px;
+  display:flex;justify-content:center;
+}
+.spinner{
+  width:16px;height:16px;border-radius:999px;
+  border:2px solid rgba(255,255,255,.35);
+  border-top-color:white;
+  animation: spin .9s linear infinite;
+}
+@keyframes spin {to{transform:rotate(360deg)}}
