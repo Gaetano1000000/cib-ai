@@ -19,3 +19,10 @@ tmp/
 # OS/Editor
 .DS_Store
 .vscode/
+
+# runtime artifacts
+dossiers/
+logs/
+backups/
+tmp/
+*.log
